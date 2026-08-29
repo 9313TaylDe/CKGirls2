@@ -31,7 +31,8 @@ import com.example.ckgirls.app.ui.colors.InputLight
 @Composable
 fun SelectorFiolter(
     viewModelService: ViewModelService = ViewModelService(),
-    filtrarProductos: (Int) -> Unit
+    filtrarProductos: (Int) -> Unit,
+    filtrados: (String) -> Unit
 ) {
     val products = viewModelService.categorys
     var selected by remember { mutableStateOf(false) }
@@ -43,15 +44,19 @@ fun SelectorFiolter(
 
     Box() {
 
-            IconButton(
-                onClick = { selected = true },
-            ) {
-                Icon(
-                    imageVector = Icons.Default.FilterAlt, "",
-                    tint = InputLight,
-                    modifier = Modifier.size(60.dp).zIndex(zIndex = 10f)
-                )
-            }
+        IconButton(
+            onClick = {
+                selected = true
+            },
+        ) {
+            Icon(
+                imageVector = Icons.Default.FilterAlt, "",
+                tint = InputLight,
+                modifier = Modifier
+                    .size(60.dp)
+                    .zIndex(zIndex = 10f)
+            )
+        }
 
         DropdownMenu(
             expanded = selected, onDismissRequest = {
